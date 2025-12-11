@@ -401,7 +401,46 @@ Prompts (Options):
 - `R1(config-if)#` : interface config
 
 ---
+---
 
-You can drop this whole file into your repo as something like:  
+## Question 21 – Cisco Router Bootup Phases
 
-`ccna-network-layer-and-arp-quiz-writeup-2025.md`
+> **Question:**  
+> Match the phases to the functions during the boot up process of a Cisco router.
+
+**Correct matching**
+
+- **Phase 1 →** perform the **POST and load the bootstrap program**  
+- **Phase 2 →** **locate and load the Cisco IOS software**  
+- **Phase 3 →** **locate and load the startup configuration file**
+
+---
+
+### Why this is correct
+
+When a Cisco router powers on, it follows a 3-phase boot sequence:
+
+1. **Phase 1 – POST + Bootstrap**
+   - The router runs **Power-On Self-Test (POST)** to check basic hardware (CPU, RAM, interfaces, etc.).
+   - Then it loads the **bootstrap program** from ROM.
+   - If POST fails, the router can’t continue booting.
+
+2. **Phase 2 – Locate & load the IOS**
+   - The bootstrap program looks for a valid **Cisco IOS image**, normally in **flash memory**.
+   - If it can’t find IOS in flash, it may try other locations (TFTP, ROMMON, etc.).
+   - Once found, the IOS is **decompressed into RAM and executed**.
+
+3. **Phase 3 – Locate & load the startup-config**
+   - With IOS running, the router searches **NVRAM** for the **startup-configuration file**.
+   - If it **finds** one, it loads it into **running-config** and applies all settings (hostnames, passwords, interfaces, routing, etc.).
+   - If it **doesn’t find** one, the router enters **setup mode** (the initial configuration dialog).
+
+---
+
+### Quick memory hook
+
+- **1 – POST & Bootstrap** → _“Am I alive and can I start?”_  
+- **2 – Load IOS** → _“Get my operating system.”_  
+- **3 – Load startup-config** → _“Apply my personality (config).”_
+
+---
